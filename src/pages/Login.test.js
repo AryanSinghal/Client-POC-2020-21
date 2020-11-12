@@ -39,6 +39,13 @@ describe('<Login />', () => {
     expect(wrapper.state('emailError')).toBeTruthy();
   });
 
+  it('should show error on blank Email', () => {
+    const instance = wrapper.instance();
+    instance.handleEmailChange({ target: { value: '' } });
+    wrapper.update();
+    expect(wrapper.state('emailError')).toBeTruthy();
+  });
+
   it('should not throw on correct Password', () => {
     const instance = wrapper.instance();
     instance.handlePasswordChange({ target: { value: 'correctPassword' } });
@@ -53,14 +60,14 @@ describe('<Login />', () => {
     expect(wrapper.state('passwordError')).toBe('Password is required');
   });
 
-  // it('should run handleSubmit', async () => {
-  //   const instance = wrapper.instance();
-  //   instance.setState({ email: 'correctEmail@gmail.com', password: 'correctPassword' })
-  //   instance.handleSubmit();
-  //   await new Promise(resolve => setTimeout(resolve, 0));
-  //   wrapper.update();
-  //   expect(localStorage.getItem('data')).toBeFalsy();
-  // });
+  it('should run handleSubmit', async () => {
+    const instance = wrapper.instance();
+    instance.setState({ email: 'correctEmail@gmail.com', password: 'correctPassword' })
+    instance.handleSubmit();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    wrapper.update();
+    expect(localStorage.getItem('data')).toBeFalsy();
+  });
 
   it('', async () => {
     const instance = wrapper.instance();

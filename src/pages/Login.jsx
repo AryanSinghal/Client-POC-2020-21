@@ -34,7 +34,7 @@ class Login extends Component {
         if (data) {
           console.log(data)
           localStorage.setItem('token', data);
-          // this.props.history.push('');
+          this.props.history.push('/list');
         }
       })
       .catch((err) => {
@@ -61,6 +61,9 @@ class Login extends Component {
   render() {
     const { classes } = this.props;
     const { emailError, passwordError } = this.state;
+    // if (this.state.email === 'a') {
+    //   throw new Error('Hurrayyyyyyyyyyyyy'); //testing error boundaries
+    // }
     return (
       <div align="center" style={{ paddingTop: "100px" }}>
         <Card className={classes.card}>

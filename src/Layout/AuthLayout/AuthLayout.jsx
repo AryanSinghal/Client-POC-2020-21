@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Footer } from '../components';
+const Footer = React.lazy(() => import('../components/Footer/Footer'));
 
 const AuthLayout = (props) => {
   const { children } = props;
@@ -10,7 +10,9 @@ const AuthLayout = (props) => {
   return (
     <>
       {children}
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Footer />
+      </Suspense>
     </>
   );
 };
